@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Playfair Display", serif;
+  --color-primary: #0B0B0B;
+  --color-accent: #C8A96A;
+  --color-secondary: #F5EFE6;
+  --color-soft-gray: #8E9299;
+
+  @keyframes shimmer {
+    from { background-position: 0% center; }
+    to { background-position: 200% center; }
+  }
+  --animate-shimmer: shimmer 8s linear infinite;
+}
+
+@layer components {
+  .premium-card {
+    @apply bg-white/[0.03] backdrop-blur-md border border-white/10 rounded-[2rem] transition-all duration-500 hover:border-accent/40;
+  }
+  .luxury-text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-accent via-white to-accent bg-[length:200%_auto] animate-shimmer;
+  }
+  .btn-primary {
+    @apply bg-accent text-primary px-8 py-4 rounded-full font-bold transition-all duration-500 hover:scale-105 shadow-lg shadow-accent/20;
+  }
+}

@@ -1,0 +1,22 @@
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useState } from 'react';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Cinematic from './pages/Cinematic';
+import BookingModal from './components/BookingModal';
+
+export default function App() {
+  const [isBookingOpen, setIsBookingOpen] = useState(false);
+
+  return (
+    <Router>
+      <Navbar onBookClick={() => setIsBookingOpen(true)} />
+      <Routes>
+        <Route path="/" element={<Home onBookClick={() => setIsBookingOpen(true)} />} />
+        <Route path="/cinematic" element={<Cinematic />} />
+        {/* Add other routes similarly */}
+      </Routes>
+      <BookingModal isOpen={isBookingOpen} onClose={() => setIsBookingOpen(false)} />
+    </Router>
+  );
+}

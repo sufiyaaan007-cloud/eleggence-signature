@@ -1,0 +1,24 @@
+import { GoogleGenAI } from "@google/genai";
+import { useState } from 'react';
+
+export default function Cinematic() {
+  const [isGenerating, setIsGenerating] = useState(false);
+  const [videoUrl, setVideoUrl] = useState(null);
+
+  const generateVideo = async (imagePrompt, base64Image) => {
+    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
+    let operation = await ai.models.generateVideos({
+      model: 'veo-3.1-fast-generate-preview',
+      prompt: imagePrompt,
+      image: { imageBytes: base64Image, mimeType: 'image/jpeg' }
+    });
+    // Polling logic here...
+  };
+
+  return (
+    <div className="bg-primary min-h-screen pt-32">
+      <h1 className="luxury-text-gradient text-center text-6xl font-bold">Artistry in Motion</h1>
+      {/* UI for image selection and video player */}
+    </div>
+  );
+}
